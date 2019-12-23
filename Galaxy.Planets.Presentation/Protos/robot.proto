@@ -1,0 +1,26 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Galaxy.Teams";
+
+package Teams;
+import "google/protobuf/empty.proto";
+import "Protos/commonModels.proto";
+
+service Robot {
+  rpc UpdateStatus (RobotModel) returns (CommonModels.ActionReplay);
+  rpc GetById (CommonModels.IdRequest) returns (RobotModel);
+}
+
+// The request message containing the user's name.
+message RobotModel {
+    string id = 1; 
+    string name = 2;
+    string manufacturer = 3;
+    string model = 4;
+    int32 year = 5;
+    int32 unitsCoveredInADay = 6;
+    int32 trustWorthyPercentage = 7;
+    int32 fuelConsumptionPerDay = 8;
+    string nextRevision = 9;
+    int32 status = 10;
+}

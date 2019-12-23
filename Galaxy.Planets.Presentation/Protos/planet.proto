@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Galaxy.Planets";
+
+package Planets;
+import "google/protobuf/empty.proto";
+import "Protos/commonModels.proto";
+
+service Planet {
+  rpc Update (PlanetModel) returns (CommonModels.ActionReplay);
+  rpc Add (PlanetModel) returns (CommonModels.ActionReplay);
+  rpc GetAll (google.protobuf.Empty) returns (stream PlanetModel);
+  rpc GetById (CommonModels.IdRequest) returns (PlanetModel);
+}
+
+message PlanetModel {
+    string id = 1; 
+    string name = 2;
+    int32 status = 3;
+    string imagePath = 4;
+    string description = 5;
+    int32 units = 6;
+}
