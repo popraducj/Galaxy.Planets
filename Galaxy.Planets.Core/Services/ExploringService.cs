@@ -51,7 +51,7 @@ namespace Galaxy.Planets.Core.Services
            
             // simulate a complex calculation between the shuttle speed, distance between planets
             var transportDuration = new Random().Next(1, 30);
-            model.PhaseFinishTime = DateTime.Now.AddSeconds(transportDuration);
+            model.PhaseFinishTime = DateTime.UtcNow.AddSeconds(transportDuration);
             model.CreatedAt = model.UpdatedAt = DateTime.UtcNow;
             
             return await _repository.AddAsync(model);
@@ -66,8 +66,8 @@ namespace Galaxy.Planets.Core.Services
                 case ExplorationStatus.Exploring:
                 {
                     // simulate a complex calculation between robots units covered, planet units, and robot speed
-                    var explorationTime = new Random().Next(1, 30);
-                    model.PhaseFinishTime = DateTime.Now.AddSeconds(explorationTime);
+                    var explorationTime = new Random().Next(10, 30);
+                    model.PhaseFinishTime = DateTime.UtcNow.AddSeconds(explorationTime);
                     var team = await _teamService.GetByIdAsync(model.TeamId);
                     foreach (var robotId in team.Robots)
                     {
@@ -87,6 +87,9 @@ namespace Galaxy.Planets.Core.Services
                         //simulate result 
                         var isOk = new Random().Next(1, 100) % 2  + 1;
                         model.RobotsReports.Add((ExplorationResultStatus)(isOk));
+                        model.PhaseFinishTime = null;
+                        robot.Status = RobotStatus.Off;
+                        await _robotService.UpdateStatusAsync(robot);
                     }
 
                     team.Status = TeamStatus.Ready;

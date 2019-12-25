@@ -3,14 +3,16 @@ using System;
 using Galaxy.Planets.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Galaxy.Planets.Presentation.Migrations
 {
     [DbContext(typeof(PlanetsDbContext))]
-    partial class PlanetsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191224055604_ExplorationDateToNull")]
+    partial class ExplorationDateToNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

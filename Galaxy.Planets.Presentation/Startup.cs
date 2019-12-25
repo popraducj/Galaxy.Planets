@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Galaxy.Planets.Core;
 using Galaxy.Planets.Core.Interfaces;
 using Galaxy.Planets.Infrastructure;
 using Galaxy.Planets.Presentation.Ioc;
@@ -33,6 +30,7 @@ namespace Galaxy.Planets.Presentation
             services.AddDatabaseContext(Configuration);
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddServices();
+            services.AddSingleton<IHostedService, ExplorationCheck>();
             services.AddGrpc();
         }
 

@@ -15,7 +15,7 @@ namespace Galaxy.Planets.Core.Models
         public Guid PlanetId { get; set; }
         public Guid TeamId { get; set; }
         public ExplorationStatus Status { get; set; }
-        public DateTime PhaseFinishTime { get; set; }
+        public DateTime? PhaseFinishTime { get; set; }
         
         public List<ExplorationResultStatus> RobotsReports { get; set; }
     }

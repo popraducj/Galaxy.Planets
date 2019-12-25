@@ -23,5 +23,9 @@
     <ProjectReference Include="..\Galaxy.Planets.Core\Galaxy.Planets.Core.csproj" />
     <ProjectReference Include="..\Galaxy.Planets.Infrastructure\Galaxy.Planets.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings*.json" CopyToOutputDirectory="Always"/>
+    <None Include="NLog*.config" CopyToOutputDirectory="Always"/>
+  </ItemGroup>
 
 </Project>
